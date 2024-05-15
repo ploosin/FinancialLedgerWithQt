@@ -24,6 +24,9 @@
     <Filter Include="Header Files\ui">
       <UniqueIdentifier>{8459324d-a949-41eb-8d35-96935dc98451}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{d615e331-f51e-4cee-88c6-5af1a66354e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -46,6 +49,9 @@
   <ItemGroup>
     <ClInclude Include="ui\main_win.h">
       <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="core\finance.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

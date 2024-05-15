@@ -1,22 +1,62 @@
 #pragma once
 
-#include <QWidget>
-
-#include <QPainter>
-#include <QStyleOption>
+#include <QtWidgets>
 
 class MainWin : public QWidget
 {
 public:
 	MainWin() 
 	{
-		// background ÀÌ¹ÌÁö »ı¼º
-		setStyleSheet(
+
+		resize(800, 600);
+
+
+		//hBoxLayout_ = new QHBoxLayout{ this };
+		//incomeListView_  = new QListView{ this };
+		//outcomeListView_ = new QListView{ this };
+
+
+		//
+
+		// Layout ì„¤ì •
+		QVBoxLayout* mainLayout = new QVBoxLayout{ this };
+
+		// ìƒë‹¨ ë ˆì´ì•„ì›ƒ
+		QHBoxLayout* topLayout = new QHBoxLayout{};
+		QLabel* dateLabel = new QLabel("ë‚ ì§œ:", this);
+		topLayout->addWidget(dateLabel);
+		dateLineEdit = new QLineEdit(this);
+		topLayout->addWidget(dateLineEdit);
+		QPushButton* addTransactionButton = new QPushButton("ê±°ë˜ ì¶”ê°€", this);
+		topLayout->addWidget(addTransactionButton);
+		mainLayout->addLayout(topLayout);
+
+		// ê±°ë˜ ë‚´ì—­ í…Œì´ë¸”
+		transactionTable = new QTableWidget(this);
+		transactionTable->setColumnCount(3);
+		QStringList headers;
+		headers << "ë‚ ì§œ" << "ë‚´ìš©" << "ê¸ˆì•¡";
+		transactionTable->setHorizontalHeaderLabels(headers);
+		mainLayout->addWidget(transactionTable);
+
+		// background ì´ë¯¸ì§€ ìƒì„±
+		transactionTable->setStyleSheet(
 			"background-image:url(\":/Image/image/bgimg.jpg\"); background-position: center;"
 		);
 
+		connect(addTransactionButton, &QPushButton::clicked, this, [this]{});
+
 	}
 
+private:
+	
+	//QHBoxLayout* hBoxLayout_{nullptr};
+	//QListView*  incomeListView_{ nullptr };
+	//QListView* outcomeListView_{ nullptr };
+
+	QLineEdit* dateLineEdit;
+	QTableWidget* transactionTable;
+	
 	void saveToFile()
 	{
 
@@ -27,7 +67,7 @@ public:
 
 	}
 
-	// TODO: ³×Æ®¿öÅ©°¡ ¿¬°áµÇ¾î ÀÖÀ¸¸é ÆÄÀÏÀ» °¡Á®¿Àµµ·Ï ±¸Çö
+	// TODO: ë„¤íŠ¸ì›Œí¬ê°€ ì—°ê²°ë˜ì–´ ìˆìœ¼ë©´ íŒŒì¼ì„ ê°€ì ¸ì˜¤ë„ë¡ êµ¬í˜„
 	void saveToServer()
 	{
 
